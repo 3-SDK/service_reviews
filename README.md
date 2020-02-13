@@ -30,11 +30,11 @@ include params
 ```
 
 GET
-Retrieve all reviews for specific hotel listing ID:
+- Retrieve all reviews for specific hotel listing ID:
 ```sh
 /reviews/hotels/:hotelId/all
 ```
-Render review for specific hotel listing ID:
+- Render review for specific hotel listing ID:
 ```sh
 /reviews/hotels/:hotelId
 ```
