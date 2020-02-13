@@ -77,9 +77,10 @@ params: {
     response_text
   ],
 }
+
+* denotes optional field
 ```
 
-* optional field
 ## Requirements
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
