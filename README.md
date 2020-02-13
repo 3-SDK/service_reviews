@@ -23,7 +23,7 @@
 ## API
 
 POST
-Create a new review for hotel listing ID:
+- Create a new review for hotel listing ID:
 ```sh
 /reviews/hotels/:hotelId
 include params
@@ -34,20 +34,20 @@ GET
 ```sh
 /reviews/hotels/:hotelId/all
 ```
-- Render review for specific hotel listing ID:
+- Render reviews for specific hotel listing ID:
 ```sh
 /reviews/hotels/:hotelId
 ```
 
 PUT
-Update review for specific hotel listing ID and review ID:
+- Update review for specific hotel listing ID and review ID:
 ```sh
 /reviews/hotels/:hotelId/:reviewId
 include params
 ```
 
 DELETE
-Delete a review for specific hotel listing ID and review ID:
+- Delete a review for specific hotel listing ID and review ID:
 ```sh
 /reviews/hotels/:hotelId/:reviewId
 ```
