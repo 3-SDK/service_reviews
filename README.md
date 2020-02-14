@@ -26,13 +26,28 @@ POST
 - Create a new review for hotel listing ID:
 ```sh
 /reviews/hotels/:hotelId
+response: json
 include params
+```
+- Grab the reviews in batches of five, filtered by parameters
+```sh
+/reviews/hotels/:hotelId/search
+response: json
+
+params: {
+  page_number,
+  traveler_rating:['Excellent', ....],
+  time_of_year: ['Mar-May',....],
+  traveler_type: ['Families',...],
+  language: ['English',...],
+}
 ```
 
 GET
 - Retrieve all reviews for specific hotel listing ID:
 ```sh
 /reviews/hotels/:hotelId/all
+response: json
 ```
 - Render reviews for specific hotel listing ID:
 ```sh
@@ -44,12 +59,14 @@ PUT
 ```sh
 /reviews/hotels/:hotelId/:reviewId
 include params
+response: none
 ```
 
 DELETE
 - Delete a review for specific hotel listing ID and review ID:
 ```sh
 /reviews/hotels/:hotelId/:reviewId
+response: none
 ```
 
 ```sh

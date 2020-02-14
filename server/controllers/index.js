@@ -2,6 +2,17 @@ const models = require('../models');
 
 module.exports = {
   reviews: {
+    search: async (req, res, next) => {
+      // implement search
+      try {
+        const { hotelId } = req.params;
+        const filter = req.body;
+        const reviews = await models.reviews.search(hotelId, filter);
+        return res.json(reviews);
+      } catch (err) {
+        return next(err);
+      }
+    },
     post: async (req, res, next) => {
       try {
         const { hotelId } = req.params;
