@@ -1,4 +1,4 @@
-const { Pool } = require('pq');
+const { Pool } = require('pg');
 
 const pool = new Pool({
   user: 'dean',
@@ -19,13 +19,16 @@ async function post(hoteldId, data) {
 
 };
 
+async function getAll(hotelId) {
+  // const queryString = 'SELECT u.username, m.text, r.name FROM users u INNER JOIN messages m ON u.id = m.username INNER JOIN rooms r ON r.id = m.roomname;';
 
+}
 
 
 module.exports = {
   post,
   getAll,
-  get,
-  remove,
-  update,
+  // get,
+  // remove,
+  // update,
 };

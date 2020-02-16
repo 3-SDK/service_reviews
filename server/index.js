@@ -35,7 +35,7 @@ app.get('/reviews/hotels/:hotelId/all', controllers.reviews.getAll);
 app.get('/reviews/hotels/:hotelId/:reviewId', controllers.reviews.get);
 
 // DELETE one review
-app.delete('/reviews/hotels/:hotelId/:reviewId', controllers.reviews.remove);
+app.delete('/reviews/hotels/:hotelId/reviews/:reviewId/users/:userId', controllers.reviews.remove);
 
 // PUT one review
 app.put('/reviews/hotels/:hotelId/:reviewId', controllers.reviews.update);
