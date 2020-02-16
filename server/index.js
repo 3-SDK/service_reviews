@@ -1,15 +1,16 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
+const path = require('path');
+
 const app = express();
 const port = 3001;
-const db = require("./db.js");
-const compression = require("compression");
+const db = require('./db.js');
+const compression = require('compression');
 const controllers = require('./controllers');
 const models = require('./models');
 
 
 // TODO: server side rendering
-app.use("/:id", express.static(path.join(__dirname, "../client/dist")));
+app.use('/:id', express.static(path.join(__dirname, '../client/dist')));
 app.use(express.json());
 app.use(compression());
 
@@ -21,6 +22,9 @@ app.get('/reviews/hotels/:hotelId', async (req, res) => {
   return res.render('reviews', { reviews });
 });
 
+// search route
+app.post('/reviews/hotels/:hotelId/search', controllers.reviews.search);
+
 // post one review
 app.post('/reviews/hotels/:hotelId', controllers.reviews.post);
 
@@ -31,7 +35,7 @@ app.get('/reviews/hotels/:hotelId/all', controllers.reviews.getAll);
 app.get('/reviews/hotels/:hotelId/:reviewId', controllers.reviews.get);
 
 // DELETE one review
-app.delete('/reviews/hotels/:hotelId/:reviewId', controllers.reviews.remove);
+app.delete('/reviews/hotels/:hotelId/reviews/:reviewId/users/:userId', controllers.reviews.remove);
 
 // PUT one review
 app.put('/reviews/hotels/:hotelId/:reviewId', controllers.reviews.update);

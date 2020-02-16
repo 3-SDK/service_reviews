@@ -26,34 +26,118 @@ POST
 - Create a new review for hotel listing ID:
 ```sh
 /reviews/hotels/:hotelId
-include params
+response: N/A
+include params*
 ```
 
 GET
-- Retrieve all reviews for specific hotel listing ID:
+- Retrieve user information
 ```sh
-/reviews/hotels/:hotelId/all
+/users/:userid
+json response: 
+{
+  id,
+  name,
+  handle,
+  helpful_votes,
+  city,
+  state,
+  avatar_url
+}
 ```
-- Render reviews for specific hotel listing ID:
+- Retrieve hotel info
 ```sh
-/reviews/hotels/:hotelId
+/hotel/:hotelid
+json response: 
+{
+  id,
+  name
+}
+```
+- Retrieve reviews response
+```sh
+/reviews/response/:responseid
+json response: 
+{
+  id,
+  name,
+  title,
+  date,
+  text,
+}
+```
+- Retrieve reviews
+```sh
+/reviews/:reviewid
+json response: 
+{
+  id,
+  rating,
+  stay_month,
+  stay_year,
+  traveler_type,
+  language,
+  review_date,
+  review_title,
+  review_text,
+  helpful_vote_count,
+  service,
+  sleep_qual,
+  value,
+  location,
+  rooms,
+  cleanliness,
+  responseId,
+}
+```
+ 
+- Search for reviews by hotel
+```sh
+/reviews/search?hotel=:hotelid
+array of objects (see above reviews json)
+```
+
+- Search for reviews by month and hotel
+```sh
+/reviews/search?hotel=:hotelid&?month=:month
+array of objects (see above reviews json)
+```
+
+- Search for reviews by rating and hotel
+```sh
+/reviews/search?hotel=:hotelid&?rating=:rating
+array of objects (see above reviews json)
+```
+
+- Search for reviews by traveler type and hotel
+```sh
+/reviews/search?hotel=:hotelid&?travelertype=:travelertype
+array of objects (see above reviews json)
+```
+
+- Search for reviews by language and hotel
+```sh
+/reviews/search?hotel=:hotelid&?lanuage=:language
+array of objects (see above reviews json)
 ```
 
 PUT
 - Update review for specific hotel listing ID and review ID:
 ```sh
-/reviews/hotels/:hotelId/:reviewId
-include params
+/reviews/update?=reviewid=:reviewid&userid=:userid
+include whichever params* applicable
+response: none
 ```
 
 DELETE
 - Delete a review for specific hotel listing ID and review ID:
 ```sh
-/reviews/hotels/:hotelId/:reviewId
+/reviews/delete?=reviewid=:reviewid&userid=:userid
+response: none
 ```
 
 ```sh
-params: {
+*params: {
   username,
   review_date,
   rating,
