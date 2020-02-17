@@ -1,6 +1,9 @@
 # start docker container
 # docker run --name postgres -v /Users/deanma/SDC:/csv -e POSTGRES_PASSWORD=pass -d postgres:latest
 
+# docker cp /Users/deanma/SDC/reviews_sql.csv cas1:reviews_sql.csv
+# echo "csv transferred to container"
+
 # create reviews_db database
 docker exec -ti postgres psql -U postgres -c "CREATE DATABASE reviews_db;"
 

@@ -18,7 +18,7 @@ const reviews_sql = require('./reviews_sql');
 // writeEngine(reviews_by_time_year_and_hotel.header, reviews_by_time_year_and_hotel.stringGen, 1e8, 'reviews_by_time_year_and_hotel.csv');
 // writeEngine(reviews_by_traveler_type_and_hotel.header, reviews_by_traveler_type_and_hotel.stringGen, 1e8, 'reviews_by_traveler_type_and_hotel.csv');
 // writeEngine(reviews.header, reviews.stringGen, 1e8, 'reviews.csv');
-// writeEngine(users.header, users.stringGen, 1e6, 'users.csv');
+writeEngine(users.header, users.stringGen, 1e8, 'users.csv');
 
 // CSV generation (PostgresQL specific tables)
-writeEngine(reviews_sql.header, reviews_sql.stringGen, 1e8, 'reviews_sql.csv');
+// writeEngine(reviews_sql.header, reviews_sql.stringGen, 1e8, 'reviews_sql.csv');
