@@ -4,6 +4,8 @@ const randomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + mi
 const travelerType = ['Families', 'Couples', 'Solo', 'Business', 'Friends'];
 const language = ['az', 'cz', 'de', 'en', 'es', 'fa', 'fr', 'ge', 'it', 'ja', 'ko', 'nl', 'pl', 'ru', 'sk', 'sv', 'tr', 'vi', 'zh_CN', 'zh_TW'];
 
+
+
 module.exports = {
   randomNum,
   rating: () => randomNum(1, 5),
@@ -12,7 +14,6 @@ module.exports = {
   language: () => language[randomNum(0, 19)],
   date: () => `${randomNum(1990, 2020)}-${randomNum(1, 12)}-${randomNum(1, 26)}`,
   firstName: () => faker.name.firstName(),
-  lastName: faker.name.lastName(),
   text: () => faker.lorem.word(),
   sentence: faker.lorem.sentence(),
   paragraph: faker.lorem.paragraph(),
