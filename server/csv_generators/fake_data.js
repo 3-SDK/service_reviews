@@ -25,7 +25,8 @@ module.exports = {
   city: faker.address.city(),
   state: faker.address.state(),
   title: faker.name.title(),
-  rand_hotelId: () => randomNum(1, 10000000),
-  rand_reviewId: () => randomNum(1, 100000000),
+  rand_hotelId: () => randomNum(1, 1e7),
+  rand_userId: () => randomNum(1, 1e7),
   rand_responseId: () => (randomNum(1, 10) === 1 ? randomNum(1, 10000000) : 'null'),
+  rand_reviewId: () => randomNum(1, 1e8),
 };
