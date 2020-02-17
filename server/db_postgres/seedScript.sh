@@ -1,14 +1,20 @@
 # start docker container
-docker run --name postgres -v /Users/deanma/SDC:/csv -e POSTGRES_PASSWORD=pass -d postgres:latest
+# docker run --name postgres -v /Users/deanma/SDC:/csv -e POSTGRES_PASSWORD=pass -d postgres:latest
 
-# create database
-docker exec -ti postgres psql -U postgres -c "CREATE TABLE public.tbl_students(rno integer, name character varying)"
+# create reviews_db database
+docker exec -ti postgres psql -U postgres -c "CREATE DATABASE reviews_db;"
 
-# create tables
-docker exec -ti postgres psql -U postgres -c "CREATE TABLE public.tbl_students(rno integer, name character varying)"
-docker exec -ti postgres psql -U postgres -c "CREATE TABLE public.tbl_students(rno integer, name character varying)"
-docker exec -ti postgres psql -U postgres -c "CREATE TABLE public.tbl_students(rno integer, name character varying)"
-docker exec -ti postgres psql -U postgres -c "CREATE TABLE public.tbl_students(rno integer, name character varying)"
+# create users table
+docker exec -ti postgres psql -U postgres -c "\c reviews_db" -c "CREATE TABLE IF NOT EXISTS users(id int PRIMARY KEY, name varchar(255), handle varchar(255), helpful_votes int, city varchar(255), state varchar(255), avatar_url varchar(255));"
+
+# create hotels table
+docker exec -ti postgres psql -U postgres -c "\c reviews_db" -c "CREATE TABLE IF NOT EXISTS hotels(id int PRIMARY KEY, name varchar(255));"
+
+# create response table
+docker exec -ti postgres psql -U postgres -c "\c reviews_db" -c "CREATE TABLE IF NOT EXISTS response(id int PRIMARY KEY, name varchar(255), title varchar(255), date date, text varchar(255));"
+
+# create reviews table
+docker exec -ti postgres psql -U postgres -c "\c reviews_db" -c "CREATE TABLE IF NOT EXISTS reviews(id int PRIMARY KEY, userId int, hotelId int, responseId int, rating varchar(255),stay_month varchar(255),stay_year varchar(255),traveler_type varchar(255),language varchar(255),review_date date,review_title varchar(255),review_text varchar(255),helpful_vote_count int,service int,sleep_qual int,value int,location int,rooms int,cleanliness int);"
 
 # copy into tables
 
@@ -17,51 +23,3 @@ docker exec -ti postgres psql -U postgres -c "CREATE TABLE public.tbl_students(r
 # end=$(date +%s)
 # seconds=$(echo "$end - $start" | bc)
 # echo "users table seeded in $seconds"
-
-# start=$(date +%s)
-# docker exec -ti cas0 cqlsh -e "COPY reviews_keyspace.hotels(id,name) FROM 'hotels.csv' WITH DELIMITER=',' AND HEADER=TRUE;" > ~/output
-# end=$(date +%s)
-# seconds=$(echo "$end - $start" | bc)
-# echo "hotels table seeded"
-
-start=$(date +%s)
-docker exec -ti cas0 cqlsh -e "COPY reviews_keyspace.response(id,name,title,date,text) FROM 'response.csv' WITH DELIMITER=',' AND HEADER=TRUE;" > ~/output
-end=$(date +%s)
-seconds=$(echo "$end - $start" | bc)
-echo "response table seeded"
-
-start=$(date +%s)
-docker exec -ti cas0 cqlsh -e "COPY reviews_keyspace.reviews(id,rating,stay_month,stay_year,traveler_type,language,review_date,review_title,review_text,helpful_vote_count,service,sleep_qual,value,location,rooms,cleanliness,responseId) FROM 'reviews.csv' WITH DELIMITER=',' AND HEADER=TRUE;" > ~/output
-end=$(date +%s)
-seconds=$(echo "$end - $start" | bc)
-echo "reviews table seeded"
-
-# start=$(date +%s)
-# docker exec -ti cas0 cqlsh -e "COPY reviews_keyspace.reviews_by_hotel(hotelId,review_date,reviewId) FROM 'reviews_by_hotel.csv' WITH DELIMITER=',' AND HEADER=TRUE;" > ~/output
-# end=$(date +%s)
-# seconds=$(echo "$end - $start" | bc)
-# echo "reviews by hotel table seeded"
-
-start=$(date +%s)
-docker exec -ti cas0 cqlsh -e "COPY reviews_keyspace.reviews_by_time_year_and_hotel(hotelId,stay_month,review_date,reviewId) FROM 'reviews_by_time_year_and_hotel.csv' WITH DELIMITER=',' AND HEADER=TRUE;" > ~/output
-end=$(date +%s)
-seconds=$(echo "$end - $start" | bc)
-echo "reviews by time year table seeded"
-
-start=$(date +%s)
-docker exec -ti cas0 cqlsh -e "COPY reviews_keyspace.reviews_by_rating_and_hotel(hotelId,rating,review_date,reviewId) FROM 'reviews_by_rating_and_hotel.csv' WITH DELIMITER=',' AND HEADER=TRUE;" > ~/output
-end=$(date +%s)
-seconds=$(echo "$end - $start" | bc)
-echo "reviews by rating table seeded"
-
-start=$(date +%s)
-docker exec -ti cas0 cqlsh -e "COPY reviews_keyspace.reviews_by_traveler_type_and_hotel(hotelId,traveler_type,review_date,reviewId) FROM 'reviews_by_traveler_type_and_hotel.csv' WITH DELIMITER=',' AND HEADER=TRUE;" > ~/output
-end=$(date +%s)
-seconds=$(echo "$end - $start" | bc)
-echo "reviews by traveler type table seeded"
-
-start=$(date +%s)
-docker exec -ti cas0 cqlsh -e "COPY reviews_keyspace.reviews_by_language_and_hotel(hotelId,language,review_date,reviewId) FROM 'reviews_by_language_and_hotel.csv' WITH DELIMITER=',' AND HEADER=TRUE;" > ~/output
-end=$(date +%s)
-seconds=$(echo "$end - $start" | bc)
-echo "reviews by language table seeded"
