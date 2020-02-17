@@ -1,2 +1,4 @@
 node_modules
 bundle.js
+*.csv
+package-lock.json
