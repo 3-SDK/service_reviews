@@ -22,7 +22,6 @@ psql postgres -c "\c reviews_db" -c "\COPY hotels FROM '/Users/deanma/SDC/hotels
 echo "hotels table seeded"
 
 ###### response table #########
-# docker cp /Users/deanma/SDC/response.csv postgres:response.csv
 psql postgres -c "\c reviews_db" -c "\COPY response FROM '/Users/deanma/SDC/response.csv' DELIMITER ',' CSV HEADER"
 echo "response table seeded"
 
