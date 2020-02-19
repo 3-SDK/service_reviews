@@ -117,7 +117,7 @@ Arguments: none
 Returns: a dictionary with an array of up to LIMIT (5 * page number)
 
 example: For reviews of a particular hotel with stay month in Jan and Feb
-GET /reviews/search?hotel=:315&?month=1,2&page=1
+GET /reviews/search?hotel=315&?month=1,2&page=1
 ```
 
 - Retrieve reviews for a particular rating (descending order by review post date)
