@@ -1,18 +1,17 @@
-# Project Name
+# Trip Consultant
 
-> Project description
+> Reviews component of a travel destination website. Express.js back end connected to noSQL database (Apache Cassandra) and SQL database (PostgresQL). Deployed on Amazon EC2. Scaled...
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/3-SDK/ImageGallery_Service
+  - https://github.com/3-SDK/service_calendar
+
 
 ## Table of Contents
 
 1. [Usage](#Usage)
-1. [API](#API)
+1. [API Reference](#API)
 1. [Requirements](#requirements)
 1. [Development](#development)
 
@@ -21,149 +20,169 @@
 > Some usage instructions
 
 ## API
-
-POST
-- Create a new review for hotel listing ID:
+### Users
+- Retrieve a user
 ```sh
-/reviews/hotels/:hotelId
-response: N/A
-include params*
+GET /users/:id
+Arguments: none
+Returns: user object if a valid identifier was provided
+Response:
+  {
+    "id": string,
+    "name": string,
+    "handle": string,
+    "helpful_votes": int,
+    "city": string,
+    "state": string,
+    "avatar_url": string,
+  }
+```
+### Hotels
+- Retrieve a hotel
+```sh
+GET /hotels/:id
+Arguments: none
+Returns: hotel object if a valid identifier was provided
+Response:
+  {
+    "id": string,
+    "name": string,
+  }
 ```
 
-GET
-- Retrieve user information
+### Review response
+- Retrieve a response for a particular review
 ```sh
-/users/:userid
-json response: 
-{
-  id,
-  name,
-  handle,
-  helpful_votes,
-  city,
-  state,
-  avatar_url
-}
-```
-- Retrieve hotel info
-```sh
-/hotel/:hotelid
-json response: 
-{
-  id,
-  name
-}
-```
-- Retrieve reviews response
-```sh
-/reviews/response/:responseid
-json response: 
-{
-  id,
-  name,
-  title,
-  date,
-  text,
-}
-```
-- Retrieve reviews
-```sh
-/reviews/:reviewid
-json response: 
-{
-  id,
-  rating,
-  stay_month,
-  stay_year,
-  traveler_type,
-  language,
-  review_date,
-  review_title,
-  review_text,
-  helpful_vote_count,
-  service,
-  sleep_qual,
-  value,
-  location,
-  rooms,
-  cleanliness,
-  responseId,
-}
-```
- 
-- Search for reviews by hotel
-```sh
-/reviews/search?hotel=:hotelid
-array of objects (see above reviews json)
+GET /response/:id
+Arguments: none
+Returns: response object if a valid identifier was provided
+Response:
+  {
+    "id": string,
+    "name": string,
+    "title": string,
+    "date": string,
+    "text": string,
+  }
 ```
 
-- Search for reviews by month and hotel
+### Reviews
+- Retrieve a review
 ```sh
-/reviews/search?hotel=:hotelid&?month=:month
-array of objects (see above reviews json)
+GET /reviews/:id
+Arguments: none
+Returns: review object if a valid identifier was provided
+Response:
+  {
+    "id": string,
+    "user_name": string,
+    "user_handle": string,
+    "user_helpful_votes": int,
+    "user_city": string,
+    "user_state": string,
+    "user_avatar_url": string,
+    "rating": int,
+    "stay_month": string,
+    "stay_year": string,
+    "traveler_type": string,
+    "language": string,
+    "review_date": date,
+    "review_title": string,
+    "review_text": string,
+    "helpful_vote_count": int,
+    "service": int,
+    "sleep_qual": int,
+    "value": int,
+    "location": int,
+    "rooms": int,
+    "cleanliness": int,
+    "response_name": string,
+    "response_title": string,
+    "response_date": string,
+    "response_text": string,
+    "hotelId": int,
+  }
+```
+- Retrieve reviews (descending order by review post date)
+```sh
+GET /reviews/search?hotel=:hotelid&page=:page
+Arguments: none
+Returns: a dictionary with an array of up to LIMIT (5 * page number)
 ```
 
-- Search for reviews by rating and hotel
+- Retrieve reviews for a particular stay month (descending order by review post date)
 ```sh
-/reviews/search?hotel=:hotelid&?rating=:rating
-array of objects (see above reviews json)
+GET /reviews/search?hotel=:hotelid&?month=:month&page=:page
+Arguments: none
+Returns: a dictionary with an array of up to LIMIT (5 * page number)
+
+example: For reviews of a particular hotel with stay month in Jan and Feb
+GET /reviews/search?hotel=:315&?month=1,2&page=1
 ```
 
-- Search for reviews by traveler type and hotel
+- Retrieve reviews for a particular rating (descending order by review post date)
 ```sh
-/reviews/search?hotel=:hotelid&?travelertype=:travelertype
-array of objects (see above reviews json)
+GET /reviews/search?hotel=:hotelid&?rating=:rating&page=:page
+Arguments: none
+Returns: a dictionary with an array of up to LIMIT (5 * page number)
+
+Ratings: [1,2,3,4,5]
 ```
 
-- Search for reviews by language and hotel
+- Retrieve reviews for a particular traveler type (descending order by review post date)
 ```sh
-/reviews/search?hotel=:hotelid&?lanuage=:language
-array of objects (see above reviews json)
+GET /reviews/search?hotel=:hotelid&?travelertype=:travelertype&page=:page
+Arguments: none
+Returns: a dictionary with an array of up to LIMIT (5 * page number)
+
+Traveler types: ['families', 'couples', 'solo', 'business', 'friends']
 ```
 
-PUT
-- Update review for specific hotel listing ID and review ID:
+- Retrieve reviews for a particular language (descending order by review post date)
 ```sh
-/reviews/update?=reviewid=:reviewid&userid=:userid
-include whichever params* applicable
-response: none
+GET /reviews/search?hotel=:hotelid&?lanuage=:language&page=:page
+Arguments: none
+Returns: a dictionary with an array of up to LIMIT (5 * page number)
+
+Languages: ['az', 'cz', 'de', 'en', 'es', 'fa', 'fr', 'ge', 'it', 'ja', 'ko', 'nl', 'pl', 'ru', 'sk', 'sv', 'tr', 'vi', 'zh_CN', 'zh_TW']
 ```
 
-DELETE
-- Delete a review for specific hotel listing ID and review ID:
+- Delete a review
 ```sh
-/reviews/delete?=reviewid=:reviewid&userid=:userid
-response: none
+DELETE /reviews/delete?reviewid=:id&userid=:id
+Arguments: none
+Returns: 200 OK (on success)
 ```
 
+- Post a review
 ```sh
-*params: {
-  username,
-  review_date,
-  rating,
-  review_title,
-  review_text,
-  stay_date,
-  trip_type,
-  language,
-  *hotel_ratings:[
-    service,
-    location,
-    sleep_quality,
-    value,
-  ],
-  *expensive,
-  helpful_vote,
-  *response: [
-    name,
-    title,
-    response_date,
-    response_text
-  ],
-}
-
-* denotes optional field
+POST /hotels/:hotelid/review
+Arguments: 
+  {
+    "userId": id of the user
+    "rating": rating for the hotel (ranging from 1 to 5)
+    "stay_month"
+    "stay_year" 
+    "traveler_type"
+    "language"
+    "review_date": in YYYY-MM-DD format
+    "review_title"
+    "review_text"
+    "service": Optional. rating for the hotel (ranging from 1 to 5),
+    "sleep_qual": Optional. rating for the hotel (ranging from 1 to 5),
+    "value": Optional. rating for the hotel (ranging from 1 to 5),
+    "location": Optional. rating for the hotel (ranging from 1 to 5),
+    "rooms": Optional. rating for the hotel (ranging from 1 to 5),
+    "cleanliness": Optional. rating for the hotel (ranging from 1 to 5),
+  }
+Returns: 201 OK (on success)
 ```
+
+- Update a review
+PUT /reviews/update?reviewid=:id&userid=:id
+Arguments: any combination of the post fields that require editing
+Returns: 201 OK (on success)
+
 
 ## Requirements
 

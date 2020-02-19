@@ -67,4 +67,16 @@ module.exports = {
       }
     },
   },
+  users: {
+    get: async (req, res, next) => {
+      try {
+        const { userId } = req.params;
+
+        const user = await models.reviews.get(hotelId, reviewId);
+        return res.json(review);
+      } catch (err) {
+        return next(err);
+      }
+    },
+  }
 };
