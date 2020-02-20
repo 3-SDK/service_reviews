@@ -117,7 +117,7 @@ Arguments: none
 Returns: a dictionary with an array of up to LIMIT (5 * page number)
 
 example: For reviews of a particular hotel with stay month in Jan and Feb
-GET /reviews/search?hotel=:315&?month=1,2&page=1
+GET /reviews/search?hotel=315&?month=1,2&page=1
 ```
 
 - Retrieve reviews for a particular rating (descending order by review post date)
@@ -135,7 +135,7 @@ GET /reviews/search?hotel=:hotelid&?travelertype=:travelertype&page=:page
 Arguments: none
 Returns: a dictionary with an array of up to LIMIT (5 * page number)
 
-Traveler types: ['families', 'couples', 'solo', 'business', 'friends']
+Traveler types: ['Families', 'Couples', 'Solo', 'Business', 'Friends']
 ```
 
 - Retrieve reviews for a particular language (descending order by review post date)
@@ -179,9 +179,11 @@ Returns: 201 OK (on success)
 ```
 
 - Update a review
+```sh
 PUT /reviews/update?reviewid=:id&userid=:id
 Arguments: any combination of the post fields that require editing
 Returns: 201 OK (on success)
+```
 
 
 ## Requirements
