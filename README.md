@@ -135,7 +135,7 @@ GET /reviews/search?hotel=:hotelid&?travelertype=:travelertype&page=:page
 Arguments: none
 Returns: a dictionary with an array of up to LIMIT (5 * page number)
 
-Traveler types: ['families', 'couples', 'solo', 'business', 'friends']
+Traveler types: ['Families', 'Couples', 'Solo', 'Business', 'Friends']
 ```
 
 - Retrieve reviews for a particular language (descending order by review post date)
