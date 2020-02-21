@@ -26,7 +26,7 @@ async function getAllByHotelId(hotelId, limit) {
 }
 
 async function postOne(tableName, params) {
-  const queryString = `insert into ${tableName} (hotelid,review_date,cleanliness,helpful_vote_count,id,language,location,rating,review_text,review_title,rooms,service,sleep_qual,stay_month,stay_year,traveler_type,user_avatar_url,user_city,user_handle,user_helpful_votes,user_name,user_state,value)\
+  const queryString = `insert into reviews_keyspace.${tableName} (hotelid,review_date,cleanliness,helpful_vote_count,id,language,location,rating,review_text,review_title,rooms,service,sleep_qual,stay_month,stay_year,traveler_type,user_avatar_url,user_city,user_handle,user_helpful_votes,user_name,user_state,value)\
   values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
   return db.execute(queryString, params, { prepare: true });
 }
