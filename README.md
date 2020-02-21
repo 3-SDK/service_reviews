@@ -164,7 +164,7 @@ Arguments:
     "stay_month"
     "stay_year" 
     "traveler_type"
-    "language"
+    "language": ISO 2 Letter Language Code
     "review_date": in YYYY-MM-DD format
     "review_title"
     "review_text"
