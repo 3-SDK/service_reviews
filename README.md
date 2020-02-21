@@ -181,7 +181,23 @@ Returns: 201 OK (on success)
 - Update a review
 ```sh
 PUT /hotels/:hotelid/review/update?reviewid=:id&userid=:id
-Arguments: any combination of the post fields that require editing
+Arguments: any combination of the following fields that require updating
+  {
+    "rating"
+    "stay_month"
+    "stay_year" 
+    "traveler_type"
+    "language"
+    "review_date"
+    "review_title"
+    "review_text"
+    "service"
+    "sleep_qual"
+    "value"
+    "location"
+    "rooms"
+    "cleanliness"
+  }
 Returns: 201 OK (on success)
 ```
 
