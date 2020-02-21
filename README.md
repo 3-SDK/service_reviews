@@ -180,7 +180,7 @@ Returns: 201 OK (on success)
 
 - Update a review
 ```sh
-PUT /reviews/update?reviewid=:id&userid=:id
+PUT /hotels/:hotelid/review/update?reviewid=:id&userid=:id
 Arguments: any combination of the post fields that require editing
 Returns: 201 OK (on success)
 ```
