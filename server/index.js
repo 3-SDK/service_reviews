@@ -1,44 +1,44 @@
 const express = require('express');
 const path = require('path');
-
-const app = express();
-const port = 3001;
-const db = require('./db.js');
 const compression = require('compression');
 const controllers = require('./controllers');
 const models = require('./models');
+const routeHandler = require('./routes');
 
+const app = express();
+const port = 3000;
 
-// TODO: server side rendering
 app.use('/:id', express.static(path.join(__dirname, '../client/dist')));
 app.use(express.json());
 app.use(compression());
 
-// server side render with all reviews
-app.get('/reviews/hotels/:hotelId', async (req, res) => {
-  const { hotelId } = req.params;
-  const reviews = await models.getAll(hotelId);
+app.use('/', routeHandler());
 
-  return res.render('reviews', { reviews });
-});
+// // server side render with all reviews
+// app.get('/reviews/hotels/:hotelId', async (req, res) => {
+//   const { hotelId } = req.params;
+//   const reviews = await models.getAll(hotelId);
 
-// search route
-app.post('/reviews/hotels/:hotelId/search', controllers.reviews.search);
+//   return res.render('reviews', { reviews });
+// });
 
-// post one review
-app.post('/reviews/hotels/:hotelId', controllers.reviews.post);
+// // search route
+// app.post('/reviews/hotels/:hotelId/search', controllers.reviews.search);
 
-// GET all reviews
-app.get('/reviews/hotels/:hotelId/all', controllers.reviews.getAll);
+// // post one review
+// app.post('/reviews/hotels/:hotelId', controllers.reviews.post);
 
-// GET one review
-app.get('/reviews/hotels/:hotelId/:reviewId', controllers.reviews.get);
+// // GET all reviews
+// app.get('/reviews/hotels/:hotelId/all', controllers.reviews.getAll);
 
-// DELETE one review
-app.delete('/reviews/hotels/:hotelId/reviews/:reviewId/users/:userId', controllers.reviews.remove);
+// // GET one review
+// app.get('/reviews/hotels/:hotelId/:reviewId', controllers.reviews.get);
 
-// PUT one review
-app.put('/reviews/hotels/:hotelId/:reviewId', controllers.reviews.update);
+// // DELETE one review
+// app.delete('/reviews/hotels/:hotelId/reviews/:reviewId/users/:userId', controllers.reviews.remove);
+
+// // PUT one review
+// app.put('/reviews/hotels/:hotelId/:reviewId', controllers.reviews.update);
 
 app.use((req, res, next) => {
   console.log(req);

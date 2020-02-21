@@ -140,7 +140,7 @@ Traveler types: ['Families', 'Couples', 'Solo', 'Business', 'Friends']
 
 - Retrieve reviews for a particular language (descending order by review post date)
 ```sh
-GET /reviews/search?hotel=:hotelid&?lanuage=:language&page=:page
+GET /reviews/search?hotel=:hotelid&?language=:language&page=:page
 Arguments: none
 Returns: a dictionary with an array of up to LIMIT (5 * page number)
 
@@ -164,7 +164,7 @@ Arguments:
     "stay_month"
     "stay_year" 
     "traveler_type"
-    "language"
+    "language": ISO 2 Letter Language Code
     "review_date": in YYYY-MM-DD format
     "review_title"
     "review_text"
@@ -180,8 +180,24 @@ Returns: 201 OK (on success)
 
 - Update a review
 ```sh
-PUT /reviews/update?reviewid=:id&userid=:id
-Arguments: any combination of the post fields that require editing
+PUT /hotels/:hotelid/review/update?reviewid=:id&userid=:id
+Arguments: any combination of the following fields that require updating
+  {
+    "rating"
+    "stay_month"
+    "stay_year" 
+    "traveler_type"
+    "language"
+    "review_date"
+    "review_title"
+    "review_text"
+    "service"
+    "sleep_qual"
+    "value"
+    "location"
+    "rooms"
+    "cleanliness"
+  }
 Returns: 201 OK (on success)
 ```
 

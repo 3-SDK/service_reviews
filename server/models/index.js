@@ -1,5 +1,5 @@
 // const db = require('../db_cassandra');
-const db = require('../db_postgres');
+// const db = require('../csv_generators/db_postgres');
 
 module.exports = {
   reviews: {

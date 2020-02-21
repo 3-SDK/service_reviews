@@ -29,10 +29,9 @@ client.execute(query.createKeySpace)
   .then(() => client.execute(query.createResponseTbl))
   .then(() => client.execute(query.createReviewsTbl))
   .then(() => client.execute(query.createUsersTbl))
-  .then(() => client.execute(query.createReviewByHotelTbl))
+  .then(() => client.execute(query.createReviewsBaseTbl))
   .then(() => client.execute(query.createReviewByLangHotelTbl))
   .then(() => client.execute(query.createReviewByTimeHotelTbl))
   .then(() => client.execute(query.createReviewByRatingHotelTbl))
   .then(() => client.execute(query.createReviewByTravelHotelTbl))
   .catch((err) => console.log(err));
-

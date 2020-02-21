@@ -54,11 +54,10 @@ response_title text,
 response_date text,
 response_text text,
 hotelId int,
-PRIMARY KEY((id, hotelId), review_date))
-WITH CLUSTERING ORDER BY (review_date DESC);
+PRIMARY KEY(id, hotelId, review_date));
 `;
 
-const createReviewsByHotelTbl = `create table reviews_keyspace.reviews_by_hotel
+const createReviewsBaseTbl = `create table reviews_keyspace.reviews_by_hotel
 (id int, 
 user_name text,
 user_handle text,
@@ -86,35 +85,35 @@ response_title text,
 response_date text,
 response_text text,
 hotelId int,
-PRIMARY KEY(hotelId, review_date));
+PRIMARY KEY(hotelId, id, review_date));
 `;
 
 const createReviewByTimeHotelTbl = `create materialized view reviews_keyspace.reviews_by_time_year_and_hotel
-as select * from reviews_keyspace.reviews 
+as select * from reviews_keyspace.reviews_by_hotel 
 where stay_month is not null and hotelId is not null and id is not null and review_date is not null
 primary key ((stay_month,hotelId),review_date,id)
-WITH CLUSTERING ORDER BY (review_date DESC);
+WITH CLUSTERING ORDER BY (hotelid ASC, review_date DESC);
 `;
 
 const createReviewByRatingHotelTbl = `create materialized view reviews_keyspace.reviews_by_rating_and_hotel
-as select * from reviews_keyspace.reviews 
+as select * from reviews_keyspace.reviews_by_hotel
 where rating is not null and hotelId is not null and id is not null and review_date is not null
 primary key ((rating,hotelId),review_date,id)
-WITH CLUSTERING ORDER BY (review_date DESC);
+WITH CLUSTERING ORDER BY (hotelid ASC, review_date DESC);
 `;
 
 const createReviewByTravelHotelTbl = `create materialized view reviews_keyspace.reviews_by_traveler_type_and_hotel
-as select * from reviews_keyspace.reviews 
+as select * from reviews_keyspace.reviews_by_hotel
 where traveler_type is not null and review_date is not null and hotelId is not null and id is not null and review_date is not null
 primary key ((traveler_type,hotelId),review_date,id)
-WITH CLUSTERING ORDER BY (review_date DESC);
+WITH CLUSTERING ORDER BY (hotelid ASC, review_date DESC);
 `;
 
 const createReviewByLangHotelTbl = `create materialized view reviews_keyspace.reviews_by_language_and_hotel
-as select * from reviews_keyspace.reviews 
+as select * from reviews_keyspace.reviews_by_hotel
 where language is not null and hotelId is not null and id is not null and review_date is not null
 primary key ((language,hotelId),review_date,id)
-WITH CLUSTERING ORDER BY (review_date DESC);
+WITH CLUSTERING ORDER BY (hotelid ASC, review_date DESC);
 `;
 
 module.exports = {
@@ -123,6 +122,7 @@ module.exports = {
   createHotelsTbl,
   createResponseTbl,
   createReviewsTbl,
+  createReviewsBaseTbl,
   createReviewByTimeHotelTbl,
   createReviewByRatingHotelTbl,
   createReviewByTravelHotelTbl,
