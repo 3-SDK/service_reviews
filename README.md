@@ -140,7 +140,7 @@ Traveler types: ['Families', 'Couples', 'Solo', 'Business', 'Friends']
 
 - Retrieve reviews for a particular language (descending order by review post date)
 ```sh
-GET /reviews/search?hotel=:hotelid&?lanuage=:language&page=:page
+GET /reviews/search?hotel=:hotelid&?language=:language&page=:page
 Arguments: none
 Returns: a dictionary with an array of up to LIMIT (5 * page number)
 
