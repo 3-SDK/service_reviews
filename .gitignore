@@ -2,3 +2,5 @@ node_modules
 bundle.js
 *.csv
 package-lock.json
+newrelic.js
+newrelic_agent.log

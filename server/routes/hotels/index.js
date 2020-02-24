@@ -40,7 +40,6 @@ module.exports = () => {
       const id = fake.randomNum(1e8 + 1, 1e9);
       const params = [req.params.hotelId, b.review_date, cleanliness, 0, id, b.language, location, b.rating, b.review_text, b.review_title, rooms, service, sleep_qual, b.stay_month, b.stay_year, b.traveler_type, userParsed.avatar_url, userParsed.city, userParsed.handle, userParsed.helpful_votes, userParsed.name, userParsed.state, value];
 
-      console.log(id);
       const postReviewTbl1 = await reviewsService.postOne('reviews', params);
       const postReviewTbl2 = await reviewsService.postOne('reviews_by_hotel', params);
 
