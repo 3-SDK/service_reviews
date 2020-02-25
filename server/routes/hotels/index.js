@@ -41,7 +41,7 @@ module.exports = () => {
       const params = [req.params.hotelId, b.review_date, cleanliness, 0, id, b.language, location, b.rating, b.review_text, b.review_title, rooms, service, sleep_qual, b.stay_month, b.stay_year, b.traveler_type, userParsed.avatar_url, userParsed.city, userParsed.handle, userParsed.helpful_votes, userParsed.name, userParsed.state, value];
 
       const postReviewTbl1 = await reviewsService.postOne('reviews', params);
-      const postReviewTbl2 = await reviewsService.postOne('reviews_by_hotel', params);
+      const postReviewTbl2 = await reviewsService.postOne('reviews_by_hotel2', params);
 
       return res.sendStatus(201);
     } catch (err) {
@@ -93,7 +93,7 @@ module.exports = () => {
       const params = [req.params.hotelId, review_date, cleanliness, helpful_vote_count, req.query.reviewid, language, location, rating, review_text, review_title, rooms, service, sleep_qual, stay_month, stay_year, traveler_type, userParsed.avatar_url, userParsed.city, userParsed.handle, userParsed.helpful_votes, userParsed.name, userParsed.state, value];
 
       const updateReviewTbl1 = await reviewsService.postOne('reviews', params);
-      const updateReviewTbl2 = await reviewsService.postOne('reviews_by_hotel', params);
+      const updateReviewTbl2 = await reviewsService.postOne('reviews_by_hotel2', params);
 
       return res.sendStatus(201);
     } catch (err) {
