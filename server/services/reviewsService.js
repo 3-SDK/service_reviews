@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../db/cassandra');
 
 async function getOne(reviewId) {
   const queryString = `select json * from reviews_keyspace.reviews where id=${reviewId}`;
@@ -11,7 +11,7 @@ async function removeReview(reviewId) {
 }
 
 async function removeReviewByHotel(reviewId, hotelId) {
-  const queryString = `delete from reviews_keyspace.reviews_by_hotel where hotelid=${hotelId} and id=${reviewId}`;
+  const queryString = `delete from reviews_keyspace.reviews_by_hotel2 where hotelid=${hotelId} and id=${reviewId}`;
   return db.execute(queryString);
 }
 
@@ -21,7 +21,7 @@ async function getAllByHotelIdAndFilter(tableName, filter, value, hotelId, limit
 }
 
 async function getAllByHotelId(hotelId, limit) {
-  const queryString = `select json * from reviews_keyspace.reviews_by_hotel where hotelid=${hotelId} limit ${limit}`;
+  const queryString = `select json * from reviews_keyspace.reviews_by_hotel2 where hotelid=${hotelId} limit ${limit}`;
   return db.execute(queryString);
 }
 

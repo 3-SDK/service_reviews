@@ -54,7 +54,8 @@ response_title text,
 response_date text,
 response_text text,
 hotelId int,
-PRIMARY KEY(id, hotelId, review_date));
+PRIMARY KEY(id, hotelId, review_date))
+WITH CLUSTERING ORDER BY (hotelid ASC, review_date DESC);
 `;
 
 const createReviewsBaseTbl = `create table reviews_keyspace.reviews_by_hotel
@@ -85,7 +86,8 @@ response_title text,
 response_date text,
 response_text text,
 hotelId int,
-PRIMARY KEY(hotelId, id, review_date));
+PRIMARY KEY(hotelId, id, review_date))
+WITH CLUSTERING ORDER BY (id ASC, review_date DESC);
 `;
 
 const createReviewByTimeHotelTbl = `create materialized view reviews_keyspace.reviews_by_time_year_and_hotel

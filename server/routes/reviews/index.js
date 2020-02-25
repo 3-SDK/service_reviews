@@ -15,26 +15,26 @@ module.exports = () => {
 
       if (hotel && month) {
         const reviews = await reviewsService.getAllByHotelIdAndFilter('reviews_by_time_year_and_hotel', 'stay_month', month, hotel, page);
-        return res.json(reviews);
+        return res.json(reviews.rows);
       }
 
       if (hotel && rating) {
         const reviews = await reviewsService.getAllByHotelIdAndFilter('reviews_by_rating_and_hotel', 'rating', rating, hotel, page);
-        return res.json(reviews);
+        return res.json(reviews.rows);
       }
 
       if (hotel && travelerType) {
         const reviews = await reviewsService.getAllByHotelIdAndFilter('reviews_by_traveler_type_and_hotel', 'traveler_type', travelerType, hotel, page);
-        return res.json(reviews);
+        return res.json(reviews.rows);
       }
 
       if (hotel && language) {
         const reviews = await reviewsService.getAllByHotelIdAndFilter('reviews_by_language_and_hotel', 'language', language, hotel, page);
-        return res.json(reviews);
+        return res.json(reviews.rows);
       }
 
       const reviews = await reviewsService.getAllByHotelId(hotel, page);
-      return res.json(reviews);
+      return res.json(reviews.rows);
     } catch (err) {
       return next(err);
     }
