@@ -1,5 +1,5 @@
 require('newrelic');
-
+const http = require('http');
 const express = require('express');
 const path = require('path');
 const compression = require('compression');
@@ -7,6 +7,8 @@ const routeHandler = require('./routes');
 
 const app = express();
 const port = 3000;
+http.globalAgent.keepAlive = true;
+
 app.use(compression());
 app.use(express.json());
 
@@ -14,10 +16,15 @@ app.use('/:id', express.static(path.join(__dirname, '../client/dist')));
 
 app.use('/', routeHandler());
 
+// catch 404 and forward to error handler
 app.use((req, res, next) => {
-  console.log(req);
+  const err = new Error(`Not Found (${req.url})`);
+  console.log(err);
+  next(err);
+});
+
+app.use((err, req, res) => {
   res.sendStatus(404);
-  // res.render('error');
 });
 
 
@@ -33,4 +40,11 @@ app.use((req, res, next) => {
 //   });
 // });
 
-app.listen(port, () => console.log(`App listening on port ${port}!`));
+const server = app.listen(port, () => console.log(`App listening on port ${port}!`));
+
+server.keepAliveTimeout = 60000;
+
+server.on('connection', (socket) => {
+  console.log('A new connection was made by a client.');
+  socket.setTimeout(60 * 1000);
+});
