@@ -17,10 +17,10 @@ export default function () {
   const payload = JSON.stringify(data);
   const params = { headers: { 'Content-Type': 'application/json' } };
   const id = Math.floor(Math.random() * 1e7) + 1;
-  const res = http.post(`http://localhost:3000/hotels/${id}/review`, payload, params);
+  const res = http.post(`http://localhost:3001/hotels/${id}/review`, payload, params);
   check(res, {
     "status was 201": (r) => r.status == 201,
     "transaction time OK": (r) => r.timings.duration < 2000
   });
-  sleep(.001);
+  sleep(.01);
 }
