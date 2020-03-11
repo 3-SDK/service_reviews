@@ -6,7 +6,7 @@ This was a 3 week long project. Ultimate goal was to build out, deploy, and scal
 
 ## Table of Contents
 
-1. [System Design](#System)
+1. [System Design](#system-design)
 1. [API Reference](#API)
 1. [Setup](#setup)
 
