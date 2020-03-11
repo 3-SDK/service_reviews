@@ -7,7 +7,7 @@ This was a 3 week long project. Ultimate goal was to build out, deploy, and scal
 
 ## System Design
 
-<img src="https://imgur.com/a/OUr3ZOT">
+<img src="https://i.imgur.com/a8te4SR.png">
 
 
 ## Related Repos
