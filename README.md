@@ -15,8 +15,7 @@ This was a 3 week long project. Ultimate goal was to build out, deploy, and scal
 
 1. [Usage](#Usage)
 1. [API Reference](#API)
-1. [Requirements](#requirements)
-1. [Development](#development)
+1. [Setup](#setup)
 
 ## API
 ### Users
