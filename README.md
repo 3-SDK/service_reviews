@@ -1,8 +1,11 @@
 # Trip Consultant
 
-> Reviews component of a travel destination website. Express.js back end connected to noSQL database (Apache Cassandra) and SQL database (PostgresQL). Deployed on Amazon EC2. Scaled...
+> Reviews component of a travel destination website. Express.js server, Cassandra database. 
 
-## Related Projects
+This was a 3 week long project. Ultimate goal was to build out, deploy, and scale out a backend architecture that would be able to handle a large amount of burst traffic. Stress testing was accomplished via loader.io and metrics taken from loader.io / newrelic. 
+
+
+## Related Repos
 
   - https://github.com/3-SDK/ImageGallery_Service
   - https://github.com/3-SDK/service_calendar
@@ -14,10 +17,6 @@
 1. [API Reference](#API)
 1. [Requirements](#requirements)
 1. [Development](#development)
-
-## Usage
-
-> Some usage instructions
 
 ## API
 ### Users
@@ -201,22 +200,11 @@ Arguments: any combination of the following fields that require updating
 Returns: 201 OK (on success)
 ```
 
-
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
-
-### Installing Dependencies
+## Setup
 
 From within the root directory:
 
 ```sh
-npm install -g webpack
 npm install
 ```
 
