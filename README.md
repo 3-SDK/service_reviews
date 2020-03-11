@@ -4,23 +4,15 @@
 
 This was a 3 week long project. Ultimate goal was to build out, deploy, and scale out a backend architecture that would be able to handle a large amount of burst traffic. Stress testing was accomplished via loader.io and metrics taken from loader.io / newrelic. 
 
+## Table of Contents
+
+1. [System Design](#System Design)
+1. [API Reference](#API)
+1. [Setup](#setup)
 
 ## System Design
 
 <img src="https://i.imgur.com/a8te4SR.png">
-
-
-## Related Repos
-
-  - https://github.com/3-SDK/ImageGallery_Service
-  - https://github.com/3-SDK/service_calendar
-
-
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [API Reference](#API)
-1. [Setup](#setup)
 
 ## API
 ### Users
