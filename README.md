@@ -2,7 +2,7 @@
 
 > Reviews component of a travel destination website. Express.js server, Cassandra database. 
 
-This was a 3 week long project. Ultimate goal was to build out, deploy, and scale out a backend architecture that would be able to handle a large amount of burst traffic. Stress testing was accomplished via loader.io and metrics taken from loader.io / newrelic. 
+This was a 3 week long project. I inherited legacy code that included a built out functioning front end component along with a bare bones backend. I rebuilt the backend from scratch with the ultimate goal of deploying, and then scaling in such a way that would be able to support large volumes of burst traffic. Stress testing was accomplished via loader.io and metrics taken from loader.io / newrelic. 
 
 ## Table of Contents
 
